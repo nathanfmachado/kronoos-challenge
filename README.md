@@ -22,8 +22,46 @@ $ npm run start
 
 ## Resultados esperados:
 
-O app irá ler o arquivo `data.csv` na raiz do projeto e printar os dados formatados como um array de objetos. Ao fazer o mapeamento, o app também irá verificar se os dados são válidos, e caso não seja, irá inserir um campo `rowErrors` no objeto com erros.
-O `rowErrors` contém um array de strings com o nome dos campos que estão com erro naquela linha.
+O app irá ler o arquivo `data.csv` na raiz do projeto e printar os dados formatados como um array de objetos. Ao fazer o mapeamento, o app também irá verificar se os dados especificados no desafio são válidos, e caso não seja, irá inserir um campo `rowErrors`.
+O `rowErrors` contém um array de strings com o nome dos campos que estão com erro naquela linha e uma mensagem com mais detalhes sobre o erro.
+
+Segue exemplo de uma linha do CSV transformada em objeto:
+```
+{
+  nrInst: '533',
+  nrAgencia: '32',
+  cdClient: '56133',
+  nmClient: 'CLIENTE 1',
+  nrCpfCnpj: '418.542.747-61',
+  nrContrato: '733067',
+  dtContrato: 2022-12-27T03:00:00.000Z,
+  qtPrestacoes: 5,
+  vlTotal: 'R$ 83.720,19',
+  cdProduto: '777',
+  dsProduto: 'CDC PESSOA JURIDICA',
+  cdCarteira: '17',
+  dsCarteira: 'CRÉDITO DIRETO AO CONSUMIDOR',
+  nrProposta: '798586',
+  nrPresta: '2',
+  tpPresta: 'Original',
+  nrSeqPre: '0',
+  dtVctPre: 2022-04-06T03:00:00.000Z,
+  vlPresta: 'R$ 17.524,03',
+  vlMora: 'R$ 29.196,96',
+  vlMulta: '536.4',
+  vlOutAcr: '0',
+  vlIof: '0',
+  vlDescon: '0',
+  vlAtual: '47257.39',
+  idSituac: 'Aberta',
+  idSitVen: 'Vencida',
+  rowErrors: [
+    { field: 'vlPresta', error: 'O valor da prestação está incorreto' }
+  ]
+}
+```
+ 
+Ao fim, o app irá printar todo o array de dados formatados e com as marcações de erros.
 
 Qualquer dúvida, segue contato para esclarecimentos: nathanfmachado@gmail.com
 

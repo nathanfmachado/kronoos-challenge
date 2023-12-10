@@ -21,9 +21,18 @@ export const dataMapper = (data) => {
   const [dtContrato, dtContratoError] = formatDate(data.dtContrato, 'dtContrato');
   const [dtVctPre, dtVctPreError] = formatDate(data.dtVctPre, 'dtVctPre');
 
-  dataErrors.push(vlTotalError, vlPrestaError, vlMoraError, qtPrestacoesError, nrCpfCnpjError, dtContratoError, dtVctPreError);
+  dataErrors.push(
+    vlTotalError,
+    vlPrestaError,
+    vlMoraError,
+    qtPrestacoesError,
+    nrCpfCnpjError,
+    dtContratoError,
+    dtVctPreError,
+  );
 
-  const formattedData = {
+  return {
+    ...data,
     vlTotal,
     vlPresta,
     vlMora,
@@ -31,9 +40,6 @@ export const dataMapper = (data) => {
     nrCpfCnpj,
     dtContrato,
     dtVctPre,
-  
     rowErrors: dataErrors.filter((error) => error),
   };
-
-  return formattedData;
 }

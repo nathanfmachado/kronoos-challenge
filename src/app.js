@@ -16,8 +16,7 @@ reader.on("data", (row) => {
   })
   .on("end", () => {
     console.log("CSV file successfully processed");
-    console.log(csvData[0]);
-    console.log(csvData[300]);
+    console.log(csvData);
   });
 
 
