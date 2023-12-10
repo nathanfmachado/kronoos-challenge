@@ -1,0 +1,16 @@
+{
+  "name": "kronoos-challenge",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "## Manipulação de dados CSV e conversão para array",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parse": "5.5.3"
+  }
+}
