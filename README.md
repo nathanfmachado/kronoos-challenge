@@ -20,6 +20,14 @@ $ npm install
 $ npm run start
 ```
 
+## Testes
+
+Foram feitos testes para os formatadores e validadores. Para executar os testes, certifique-se que as dependências foram instaladas e execute:
+
+```bash
+$ npm test
+```
+
 ## Resultados esperados:
 
 O app irá ler o arquivo `data.csv` na raiz do projeto e printar os dados formatados como um array de objetos. Ao fazer o mapeamento, o app também irá verificar se os dados especificados no desafio são válidos, e caso não seja, irá inserir um campo `rowErrors`.
@@ -62,8 +70,6 @@ Segue exemplo de uma linha do CSV transformada em objeto:
 ```
  
 Ao fim, o app irá printar todo o array de dados formatados e com as marcações de erros.
-
-Qualquer dúvida, segue contato para esclarecimentos: nathanfmachado@gmail.com
 
 ## Requisitos e instruções do desafio:
 ### Manipulação de Dados de CSV e Conversão para Array
