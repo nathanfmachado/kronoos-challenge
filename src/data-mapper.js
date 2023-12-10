@@ -16,6 +16,13 @@ export const dataMapper = (data) => {
     dataErrors.push(vlPrestaCalcError);
   }
   const [vlMora, vlMoraError] = formatCurrency(data.vlMora, 'vlMora', BRLformatter);
+  const [vlMulta, vlMultaError] = formatCurrency(data.vlMulta, 'vlMulta', BRLformatter);
+  const [vlOutAcr, vlOutAcrError] = formatCurrency(data.vlOutAcr, 'vlOutAcr', BRLformatter);
+  const [vlIof, vlIofError] = formatCurrency(data.vlIof, 'vlIof', BRLformatter);
+  const [vlDescon, vlDesconError] = formatCurrency(data.vlDescon, 'vlDescon', BRLformatter);
+  const [vlAtual, vlAtualError] = formatCurrency(data.vlAtual, 'vlAtual', BRLformatter);
+
+
   const [qtPrestacoes, qtPrestacoesError] = formatNumber(data.qtPrestacoes, 'qtPrestacoes');
   const [nrCpfCnpj, nrCpfCnpjError] = formatCpfCnpj(data.nrCpfCnpj, 'nrCpfCnpj');
   const [dtContrato, dtContratoError] = formatDate(data.dtContrato, 'dtContrato');
@@ -29,6 +36,11 @@ export const dataMapper = (data) => {
     nrCpfCnpjError,
     dtContratoError,
     dtVctPreError,
+    vlMultaError,
+    vlOutAcrError,
+    vlIofError,
+    vlDesconError,
+    vlAtualError,
   );
 
   return {
@@ -36,6 +48,11 @@ export const dataMapper = (data) => {
     vlTotal,
     vlPresta,
     vlMora,
+    vlMulta,
+    vlOutAcr,
+    vlIof,
+    vlDescon,
+    vlAtual,
     qtPrestacoes,
     nrCpfCnpj,
     dtContrato,
