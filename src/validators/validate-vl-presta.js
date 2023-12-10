@@ -1,18 +1,17 @@
 
 export const validateVlPresta = ({ vlTotal, qtPrestacoes, vlPresta }) => {
   try {
-    const vlTotalNumber = Number(vlTotal);
+    const vlTotalNumber = Math.round((vlTotal + Number.EPSILON) * 100) / 100;
     const qtPrestacoesNumber = Number(qtPrestacoes);
-    const vlPrestaNumber = Number(vlPresta);
+    const vlPrestaNumber = Math.round((vlPresta + Number.EPSILON) * 100) / 100;
 
     const vlPrestaCalc = vlTotalNumber / qtPrestacoesNumber;
+    const vlPrestaRounded = Math.round((vlPrestaCalc + Number.EPSILON) * 100) / 100;
     
     // Compare floating point numbers with one cent tolerance
-    if (vlPrestaCalc < vlPrestaNumber - 0.01 || vlPrestaCalc > vlPrestaNumber + 0.01) {
+    if (vlPrestaRounded !== vlPrestaNumber) {
       return { field: 'vlPresta', error: 'O valor da prestação está incorreto' };
     }
-    console.log('foi')
-    return;
   } catch (error) {
     return { field: 'vlPresta', error: error.message };
   }
