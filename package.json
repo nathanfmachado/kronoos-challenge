@@ -5,13 +5,15 @@
   "description": "## Manipulação de dados CSV e conversão para array",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "csv-parse": "5.5.3",
-    "lodash": "4.17.21"
+    "lodash": "4.17.21",
+    "vitest": "1.0.4"
   }
 }
