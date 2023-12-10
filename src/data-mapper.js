@@ -1,4 +1,4 @@
-import { formatCurrency, formatCpfCnpj } from "./formatters/index.js";
+import { formatCurrency, formatCpfCnpj, formatDate } from "./formatters/index.js";
 import { getDataErrors } from "./get-data-errors.js";
 
 const BRLformatter = new Intl.NumberFormat('pt-BR', {
@@ -13,6 +13,8 @@ export const dataMapper = (data) => {
     vlMora: formatCurrency(data.vlMora, BRLformatter),
     qtPrestacoes: Number(data.qtPrestacoes),
     nrCpfCnpj: formatCpfCnpj(data.nrCpfCnpj),
+    dtContrato: formatDate(data.dtContrato),
+    dtVctPre: formatDate(data.dtVctPre),
   
   };
 
