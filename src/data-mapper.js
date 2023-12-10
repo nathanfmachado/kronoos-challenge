@@ -1,5 +1,5 @@
-import { formatCurrency, formatCpfCnpj, formatDate } from "./formatters/index.js";
-import { getDataErrors } from "./get-data-errors.js";
+import { formatCurrency, formatCpfCnpj, formatDate, formatNumber } from "./formatters/index.js";
+import { validateVlPresta } from "./validators/index.js";
 
 const BRLformatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
@@ -7,19 +7,33 @@ const BRLformatter = new Intl.NumberFormat('pt-BR', {
 });
 
 export const dataMapper = (data) => {
-  const formattedData = {
-    vlTotal: formatCurrency(data.vlTotal, BRLformatter),
-    vlPresta: formatCurrency(data.vlPresta, BRLformatter),
-    vlMora: formatCurrency(data.vlMora, BRLformatter),
-    qtPrestacoes: Number(data.qtPrestacoes),
-    nrCpfCnpj: formatCpfCnpj(data.nrCpfCnpj),
-    dtContrato: formatDate(data.dtContrato),
-    dtVctPre: formatDate(data.dtVctPre),
-  
-  };
+  const dataErrors = [];
 
-  const dataErrors = getDataErrors(data, formattedData)
-  formattedData.rowErrors = dataErrors;
+  const [vlTotal, vlTotalError] = formatCurrency(data.vlTotal, 'vlTotal', BRLformatter);
+  const [vlPresta, vlPrestaError] = formatCurrency(data.vlPresta, 'vlPresta', BRLformatter);
+  const vlPrestaCalcError = validateVlPresta(data);
+  if (vlPrestaCalcError) {
+    dataErrors.push(vlPrestaCalcError);
+  }
+  const [vlMora, vlMoraError] = formatCurrency(data.vlMora, 'vlMora', BRLformatter);
+  const [qtPrestacoes, qtPrestacoesError] = formatNumber(data.qtPrestacoes, 'qtPrestacoes');
+  const [nrCpfCnpj, nrCpfCnpjError] = formatCpfCnpj(data.nrCpfCnpj, 'nrCpfCnpj');
+  const [dtContrato, dtContratoError] = formatDate(data.dtContrato, 'dtContrato');
+  const [dtVctPre, dtVctPreError] = formatDate(data.dtVctPre, 'dtVctPre');
+
+  dataErrors.push(vlTotalError, vlPrestaError, vlMoraError, qtPrestacoesError, nrCpfCnpjError, dtContratoError, dtVctPreError);
+
+  const formattedData = {
+    vlTotal,
+    vlPresta,
+    vlMora,
+    qtPrestacoes,
+    nrCpfCnpj,
+    dtContrato,
+    dtVctPre,
+  
+    rowErrors: dataErrors.filter((error) => error),
+  };
 
   return formattedData;
 }
